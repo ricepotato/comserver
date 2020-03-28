@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Com Server</title>
+  </head>
+  <style>
+    .buttonContainer button {
+      display: block;
+      width: 70%;
+      margin: 25px auto;
+      height: 25px;
+    }
+    .formContainer {
+      margin-top: 25px;
+      text-align: center;
+    }
+    .formContainer input {
+      height: 25px;
+      width: 50px;
+    }
+  </style>
+  <body>
+    <div class="formContainer">
+      <label for="shutdownAfter">컴퓨터가</label>
+      <input id="secs" type="number" value="30" /> 초 후에 꺼집니다.
+    </div>
+    <div class="buttonContainer">
+      <button id="btnShutdown">컴퓨터 끄기</button>
+      <button id="btnCancel">취소하기</button>
+    </div>
+    <script>
+      const secs = document.getElementById("secs");
+      const btnShutdown = document.getElementById("btnShutdown");
+      const btnCancel = document.getElementById("btnCancel");
+      const handleShutdownBtnClick = () => {
+        window.location.href = `/shutdown/${secs.value}`;
+      };
+      const handleCancelBtnClick = () => {
+        window.location.href = "/cancel";
+      };
+      function init() {
+        btnShutdown.addEventListener("click", handleShutdownBtnClick);
+        btnCancel.addEventListener("click", handleCancelBtnClick);
+      }
+      init();
+    </script>
+  </body>
+</html>
