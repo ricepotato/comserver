@@ -1,6 +1,6 @@
 import subprocess
 import argparse
-from flask import Flask, render_template
+from flask import Flask
 
 app = Flask(__name__)
 
@@ -11,22 +11,28 @@ def subprocess_checkoutput(args):
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return "hello"
 
 
-@app.route("/shutdown/<int:seconds>")
-def shutdown(seconds):
+@app.route("/linux/shutdown")
+def linux_shutdown():
+    args = ["shutdown", "now"]
+    subprocess_checkoutput(args)
+    return "OK"
 
+
+@app.route("/win/shutdown/<int:seconds>")
+def win_shutdown(seconds):
     args = ["shutdown", "-s", "-t", f"{seconds}"]
     subprocess_checkoutput(args)
-    return render_template("index.html")
+    return "OK"
 
 
-@app.route("/cancel")
+@app.route("/win/cancel")
 def cancel():
     args = ["shutdown", "-a"]
     subprocess_checkoutput(args)
-    return render_template("index.html")
+    return "OK"
 
 
 def main():
