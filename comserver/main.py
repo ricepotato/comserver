@@ -35,7 +35,7 @@ def cancel():
     return "OK"
 
 
-def main():
+def runserver():
     parser = argparse.ArgumentParser()
     parser.add_argument("--debug", action="store_true", default=False, help="debug")
     args = parser.parse_args()
@@ -43,4 +43,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    runserver()
