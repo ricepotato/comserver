@@ -1,3 +1,3 @@
 init:
 	poetry build
-	docker build -t comserver:latest .
+	docker build --no-cache -t comserver:$(shell poetry version -s) .
